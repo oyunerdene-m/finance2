@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Form from './Form';
 import fetchData from '../../lib/fetchData';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+	const navigate = useNavigate();
 	const [userData, setUserData] = useState({ name: '', email: '', password: '' });
 
 	function changeHandler(event) {
@@ -18,10 +20,14 @@ export default function Signup() {
 	async function submitHandler(event) {
 		event.preventDefault();
 		try {
-			await fetchData('/api/v1/users/register', 'POST', userData);
+			const response = await fetchData('/api/v1/users/register', 'POST', userData);
+			console.log('registered', response);
+			navigate('/login');
 		} catch (error) {
-			console.error(error);
+			console.log(error);
+			alert(error);
 		}
+		setUserData({ name: '', email: '', password: '' });
 	}
 
 	return (

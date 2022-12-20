@@ -13,7 +13,6 @@ export default async function fetchData(url, method, body) {
 	const jsonResponse = await response.json();
 
 	if (jsonResponse.error) {
-		alert(jsonResponse.error);
 		throw new Error(jsonResponse.error);
 	} else {
 		return jsonResponse.data;

@@ -1,3 +1,3 @@
 export default function AnotherPage() {
-	return <h1>Another page!!</h1>;
+	return <h2> Another page!</h2>;
 }
