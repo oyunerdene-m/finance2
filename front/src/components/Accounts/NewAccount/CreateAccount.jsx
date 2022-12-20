@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fetchData from '../../../lib/fetchData';
 import AccountForm from './AccountForm';
 
 export default function CreateAccount() {
+	const navigate = useNavigate();
 	const [newAccount, setNewAccount] = useState({
 		amount: 0,
 		type: '',
@@ -25,6 +27,7 @@ export default function CreateAccount() {
 		event.preventDefault();
 		try {
 			await fetchData('/api/v1/accounts/add', 'POST', newAccount);
+			navigate('/');
 		} catch (error) {
 			console.log(error);
 			alert(error);
