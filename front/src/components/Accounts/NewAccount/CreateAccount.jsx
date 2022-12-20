@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import fetchData from '../../../lib/fetchData';
 import AccountForm from './AccountForm';
 
 export default function CreateAccount() {
@@ -20,9 +21,14 @@ export default function CreateAccount() {
 		});
 	}
 
-	function submitHandler(event) {
+	async function submitHandler(event) {
 		event.preventDefault();
-		console.log(newAccount);
+		try {
+			await fetchData('/api/v1/accounts/add', 'POST', newAccount);
+		} catch (error) {
+			console.log(error);
+			alert(error);
+		}
 	}
 
 	return <AccountForm onSubmit={submitHandler} onChange={changeHandler} />;
