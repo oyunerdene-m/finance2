@@ -4,29 +4,13 @@ import Home from './pages/home';
 import AnotherPage from './pages/another';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import fetchData from './lib/fetchData';
+import { UserContext } from './context/currentUser-context';
 
 function App() {
-	const [currentUser, setCurrentUser] = useState(null);
-	const [isUserLoading, setIsUserLoading] = useState(false);
+	const { currentUser, isUserLoading } = useContext(UserContext);
 	const location = useLocation();
-
-	useEffect(() => {
-		async function getUser() {
-			try {
-				setIsUserLoading(true);
-				const response = await fetchData('/api/v1/users/current-user', 'GET', undefined);
-				setCurrentUser(response.user);
-			} catch (error) {
-				console.log(error);
-				alert(error);
-			} finally {
-				setIsUserLoading(false);
-			}
-		}
-		getUser();
-	}, []);
 
 	async function logoutHandler() {
 		try {
