@@ -1,12 +1,13 @@
 import './App.css';
+import { useContext } from 'react';
 import { Route, Routes, Link, Navigate, useLocation } from 'react-router-dom';
+import { UserContext } from './context/currentUser-context';
+import fetchData from './lib/fetchData';
 import Home from './pages/home';
 import AnotherPage from './pages/another';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
-import { useContext } from 'react';
-import fetchData from './lib/fetchData';
-import { UserContext } from './context/currentUser-context';
+import CreateAccount from './components/Accounts/NewAccount/CreateAccount';
 
 function App() {
 	const { currentUser, isUserLoading } = useContext(UserContext);
@@ -71,6 +72,7 @@ function App() {
 				<Route path='/signup' exact element={<Signup />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route path='/another' element={<AnotherPage />} />
+				<Route exact path='/accounts/new' element={<CreateAccount />} />
 			</Routes>
 		</>
 	);
