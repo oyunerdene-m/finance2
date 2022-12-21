@@ -1,3 +1,11 @@
-export default function AccountsList() {
-	return <h1>I am accounts list</h1>;
+import Account from './Account';
+
+export default function AccountsList({ accounts }) {
+	return (
+		<ul>
+			{accounts.map((account) => (
+				<Account key={account.id} account={account} />
+			))}
+		</ul>
+	);
 }

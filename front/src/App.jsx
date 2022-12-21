@@ -58,6 +58,9 @@ function App() {
 								<Link to='/another'>Another</Link>
 							</li>
 							<li>
+								<Link to='/accounts'>Accounts</Link>
+							</li>
+							<li>
 								Hello,{currentUser.name}
 								<Link onClick={logoutHandler} to='/another'>
 									Logout
