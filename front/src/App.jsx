@@ -8,6 +8,7 @@ import AnotherPage from './pages/another';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
 import CreateAccount from './components/Accounts/NewAccount/CreateAccount';
+import Accounts from './pages/accounts';
 
 function App() {
 	const { currentUser, isUserLoading } = useContext(UserContext);
@@ -57,6 +58,9 @@ function App() {
 								<Link to='/another'>Another</Link>
 							</li>
 							<li>
+								<Link to='/accounts'>Accounts</Link>
+							</li>
+							<li>
 								Hello,{currentUser.name}
 								<Link onClick={logoutHandler} to='/another'>
 									Logout
@@ -72,6 +76,7 @@ function App() {
 				<Route path='/signup' exact element={<Signup />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route path='/another' element={<AnotherPage />} />
+				<Route exact path='/accounts' element={<Accounts />} />
 				<Route exact path='/accounts/new' element={<CreateAccount />} />
 			</Routes>
 		</>

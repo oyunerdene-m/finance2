@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from 'react';
 import fetchData from '../lib/fetchData';
 
-export const UserContext = createContext(null);
+export const UserContext = createContext({ currentUser: null });
 
 export const CurrentUserProvider = (props) => {
 	const [currentUser, setCurrentUser] = useState(null);
