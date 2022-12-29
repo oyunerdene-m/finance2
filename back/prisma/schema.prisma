@@ -60,9 +60,9 @@ model Transaction {
   accountId         Int
   category          String
   description       String
-  nextTransaction   Transaction? @relation("NextTransaction", fields: [nextTransactionId], references: [id])
-  nextTransactionId Int?         @unique
-  prevTransaction   Transaction? @relation("NextTransaction")
+  prevTransaction   Transaction? @relation("PrevTransaction", fields: [prevTransactionId], references: [id])
+  prevTransactionId Int?         @unique
+  nextTransaction   Transaction? @relation("PrevTransaction")
   createdAt         DateTime     @default(now())
   updatedAt         DateTime     @updatedAt
 }

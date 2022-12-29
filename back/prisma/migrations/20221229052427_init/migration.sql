@@ -32,16 +32,16 @@ CREATE TABLE "Transaction" (
     "accountId" INTEGER NOT NULL,
     "category" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "nextTransactionId" INTEGER,
+    "prevTransactionId" INTEGER,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     CONSTRAINT "Transaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Transaction_accountId_fkey" FOREIGN KEY ("accountId") REFERENCES "Account" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Transaction_nextTransactionId_fkey" FOREIGN KEY ("nextTransactionId") REFERENCES "Transaction" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    CONSTRAINT "Transaction_prevTransactionId_fkey" FOREIGN KEY ("prevTransactionId") REFERENCES "Transaction" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Transaction_nextTransactionId_key" ON "Transaction"("nextTransactionId");
+CREATE UNIQUE INDEX "Transaction_prevTransactionId_key" ON "Transaction"("prevTransactionId");
