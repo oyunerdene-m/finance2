@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { addAccount, closeAccount, editAccount, getAccounts } from './db/accounts';
+import { addAccount, closeAccount, editAccount, getAccounts, getAccountById } from './db/accounts';
 import { addTransaction, editTransaction, getTransactions, getTransactionById } from './db/transactions';
 
 const router = express.Router();
@@ -36,6 +36,15 @@ router.post('/accounts/edit/:id', async (req, res, next) => {
     try {
         const updatedAccount = await editAccount(req.session.user!.id, parseInt(req.params.id), req.body);
         res.json({ data: { account: updatedAccount } });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/accounts/detail/:id', async (req, res, next) => {
+    try {
+        const account = await getAccountById(req.session.user!.id, parseInt(req.params.id));
+        res.json({ data: { account } });
     } catch (error) {
         next(error);
     }

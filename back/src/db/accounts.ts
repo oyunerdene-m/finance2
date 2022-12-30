@@ -57,4 +57,14 @@ async function closeAccount(userId: number, id: number) {
     return updatedAccount;
 }
 
-export { Account, getAccounts, addAccount, editAccount, closeAccount };
+async function getAccountById(ownerId: number, id: number) {
+    const account = await prisma.account.findFirst({ where: { id, ownerId } });
+
+    if (!account || account.ownerId !== ownerId) {
+        throw new Error('Transaction not found');
+    }
+
+    return account;
+}
+
+export { Account, getAccounts, addAccount, editAccount, closeAccount, getAccountById };
