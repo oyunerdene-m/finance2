@@ -21,7 +21,7 @@ export default function CreateAccount() {
 		setNewAccount((prevAccount) => {
 			return {
 				...prevAccount,
-				[name]: value,
+				[name]: name === 'amount' ? parseInt(value) : value,
 			};
 		});
 	}
