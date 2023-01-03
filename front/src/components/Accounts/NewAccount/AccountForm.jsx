@@ -1,9 +1,9 @@
 import { types, currency } from '../../../lib/accountsData';
 
-export default function AccountForm({ onSubmit, onChange }) {
+export default function AccountForm({ onSubmit, onChange, title }) {
 	return (
 		<form onSubmit={onSubmit}>
-			<h2>Add new Account</h2>
+			<h2>{title}</h2>
 			<div>
 				<label htmlFor='name'>Account name:</label>
 				<input name='name' onChange={onChange} type='text' id='name' />

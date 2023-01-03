@@ -38,5 +38,5 @@ export default function CreateAccount() {
 		}
 	}
 
-	return <AccountForm onSubmit={submitHandler} onChange={changeHandler} />;
+	return <AccountForm onSubmit={submitHandler} onChange={changeHandler} title='Add new account' />;
 }

@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
 import CreateAccount from './components/Accounts/NewAccount/CreateAccount';
+import EditAccount from './components/Accounts/EditAccount';
 import Accounts from './pages/accounts';
 import { AccountsProvider } from './context/accounts-context';
 
@@ -95,6 +96,15 @@ function App() {
 					element={
 						<AccountsProvider>
 							<CreateAccount />
+						</AccountsProvider>
+					}
+				/>
+				<Route
+					exact
+					path='/accounts/edit/:id'
+					element={
+						<AccountsProvider>
+							<EditAccount />
 						</AccountsProvider>
 					}
 				/>
