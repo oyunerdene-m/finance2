@@ -1,16 +1,16 @@
 import { types, currency } from '../../../lib/accountsData';
 
-export default function AccountForm({ onSubmit, onChange, title }) {
+export default function AccountForm({ onSubmit, onChange, title, oldAccount }) {
 	return (
 		<form onSubmit={onSubmit}>
 			<h2>{title}</h2>
 			<div>
 				<label htmlFor='name'>Account name:</label>
-				<input name='name' onChange={onChange} type='text' id='name' />
+				<input value={oldAccount.name} name='name' onChange={onChange} type='text' id='name' />
 			</div>
 			<div>
 				<label htmlFor='type'> type:</label>
-				<select onChange={onChange} name='type' id='type'>
+				<select value={oldAccount.type} onChange={onChange} name='type' id='type'>
 					<option>--Choose type--</option>
 					{types.map((type) => (
 						<option key={type} value={type}>
@@ -21,11 +21,17 @@ export default function AccountForm({ onSubmit, onChange, title }) {
 			</div>
 			<div>
 				<label htmlFor='amount'>amount:</label>
-				<input name='amount' onChange={onChange} type='text' id='amount' />
+				<input
+					value={oldAccount.amount}
+					name='amount'
+					onChange={onChange}
+					type='number'
+					id='amount'
+				/>
 			</div>
 			<div>
 				<label htmlFor='currency'>currency:</label>
-				<select onChange={onChange} name='currency' id='currency'>
+				<select value={oldAccount.currency} onChange={onChange} name='currency' id='currency'>
 					<option>--Choose currency--</option>
 					{currency.map((cur) => (
 						<option key={cur} value={cur}>
@@ -36,7 +42,13 @@ export default function AccountForm({ onSubmit, onChange, title }) {
 			</div>
 			<div>
 				<label htmlFor='description'>description:</label>
-				<input name='description' onChange={onChange} type='text' id='description' />
+				<input
+					value={oldAccount.description}
+					name='description'
+					onChange={onChange}
+					type='text'
+					id='description'
+				/>
 			</div>
 			<button>Add</button>
 		</form>
